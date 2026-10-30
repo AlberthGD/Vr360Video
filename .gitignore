@@ -31,3 +31,7 @@
 *_BurstDebugInformation_DoNotShip/
 *_BackUpThisFolder_ButDontShipItWithYourGame/
 ignore.conf
+
+# Documentación local
+Claude outputs/
+*.pdf
