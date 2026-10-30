@@ -15,6 +15,7 @@ public class VideoService : MonoBehaviour
     public bool EstaPreparado => videoPlayer.isPrepared;
 
     private VideoEntry videoActual;
+    public VideoEntry VideoActual => videoActual;
 
     void Awake()
     {
@@ -23,6 +24,14 @@ public class VideoService : MonoBehaviour
         
         videoPlayer.prepareCompleted += OnPrepareCompleted;
         videoPlayer.loopPointReached += OnLoopPointReached;
+        videoPlayer.errorReceived += OnVideoError;
+    }
+
+    // Si un video remoto no carga (sin red, URL mala) se regresa al menú en lugar de quedarse en "Cargando"
+    private void OnVideoError(VideoPlayer vp, string mensaje)
+    {
+        Debug.LogError($"[Video] Error al reproducir {videoActual?.title}: {mensaje}");
+        appController.BackToMenu();
     }
 
     // adelantar o rebobinar video con el slider
@@ -46,7 +55,10 @@ public class VideoService : MonoBehaviour
             RenderTexture.active = null;
         }
 
-        string path = Path.Combine(Application.streamingAssetsPath, entry.fileName);
+        // Si el catálogo trae una URL remota se reproduce por streaming; si no, desde StreamingAssets
+        string path = !string.IsNullOrEmpty(entry.url)
+            ? entry.url
+            : Path.Combine(Application.streamingAssetsPath, entry.fileName);
         videoPlayer.url = path;
         videoPlayer.isLooping = entry.loop;
 
@@ -55,6 +67,7 @@ public class VideoService : MonoBehaviour
 
     private void OnPrepareCompleted(VideoPlayer vp)
     {
+        Debug.Log($"[Video] {videoActual?.title}: {vp.width}x{vp.height}, estéreo = {videoActual?.stereo}");
         appController.OnVideoPrepared();
     }
 

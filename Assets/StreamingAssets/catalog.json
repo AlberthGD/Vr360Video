@@ -1,0 +1,68 @@
+{
+  "version": 2,
+  "videos": [
+    {
+      "title": "CampusU",
+      "fileName": "CampusU.mp4",
+      "url": "",
+      "thumbnailUrl": "https://raw.githubusercontent.com/AlberthGD/Vr360Video/main/Server/thumbs/CampusUIMG.png",
+      "duration": "1:13",
+      "loop": false,
+      "stereo": "Mono",
+      "hotspots": [
+        {
+          "title": "Edificio principal",
+          "description": "Edificio administrativo del campus. Aquí se encuentran las oficinas de atención al estudiante.",
+          "yaw": 0, "pitch": 5, "startTime": 0, "endTime": -1
+        },
+        {
+          "title": "Áreas verdes",
+          "description": "Zona de descanso y convivencia para los estudiantes entre clases.",
+          "yaw": 90, "pitch": -10, "startTime": 5, "endTime": 60
+        }
+      ]
+    },
+    {
+      "title": "Landscape",
+      "fileName": "Landscape.mp4",
+      "url": "",
+      "thumbnailUrl": "https://raw.githubusercontent.com/AlberthGD/Vr360Video/main/Server/thumbs/LandScapeIMG.png",
+      "duration": "0:51",
+      "loop": false,
+      "stereo": "Mono",
+      "hotspots": [
+        {
+          "title": "Horizonte",
+          "description": "Vista panorámica del paisaje. Gira la cabeza para recorrer los 360°.",
+          "yaw": 0, "pitch": 0, "startTime": 0, "endTime": -1
+        },
+        {
+          "title": "Cielo",
+          "description": "Mira hacia arriba: el video esférico cubre también el cenit.",
+          "yaw": -60, "pitch": 45, "startTime": 10, "endTime": -1
+        }
+      ]
+    },
+    {
+      "title": "Mountain",
+      "fileName": "Mountain.mp4",
+      "url": "",
+      "thumbnailUrl": "https://raw.githubusercontent.com/AlberthGD/Vr360Video/main/Server/thumbs/MountainIMG.png",
+      "duration": "0:51",
+      "loop": false,
+      "stereo": "Mono",
+      "hotspots": [
+        {
+          "title": "Cumbre",
+          "description": "Punto más alto visible del recorrido.",
+          "yaw": 30, "pitch": 15, "startTime": 0, "endTime": -1
+        },
+        {
+          "title": "Sendero",
+          "description": "Camino utilizado durante la grabación del recorrido.",
+          "yaw": 180, "pitch": -20, "startTime": 0, "endTime": -1
+        }
+      ]
+    }
+  ]
+}

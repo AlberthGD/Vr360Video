@@ -13312,6 +13312,8 @@ GameObject:
   - component: {fileID: 2092320435}
   - component: {fileID: 2092320434}
   - component: {fileID: 2092320439}
+  - component: {fileID: 2092320441}
+  - component: {fileID: 2092320440}
   m_Layer: 0
   m_Name: AppManager
   m_TagString: Untagged
@@ -13383,6 +13385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuView
   catalog: {fileID: 11400000, guid: 106047cfe1d284e1e92f4a0b22c68e04, type: 2}
+  catalogLoader: {fileID: 2092320441}
   videoButtonPrefab: {fileID: 7801752212193227491, guid: da7a550e1f20944b69287253ec20361e, type: 3}
   buttonContainer: {fileID: 262904719}
   appController: {fileID: 2092320437}
@@ -13403,6 +13406,7 @@ MonoBehaviour:
   videoService: {fileID: 2092320435}
   playbackControls: {fileID: 2092320439}
   loadingUI: {fileID: 632873376}
+  hotspotManager: {fileID: 2092320440}
   fadeGroup: {fileID: 711321906}
   fadeDuration: 0.5
   menuSkybox: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
@@ -13443,6 +13447,49 @@ MonoBehaviour:
   barraProgreso: {fileID: 599576123}
   distanciaFrente: 1.5
   alturaOffset: -0.3
+--- !u!114 &2092320440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092320433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a61dc72a0871a48479f67a5f46c98b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HotspotManager
+  videoService: {fileID: 2092320435}
+  playbackControls: {fileID: 2092320439}
+  rayoDerecho: {fileID: 0}
+  rayoIzquierdo: {fileID: 0}
+  correccionPitchRayo: 0
+  materialBase: {fileID: 2100000, guid: 4942095f8cfd9084d8b87d96591109b1, type: 2}
+  radio: 6
+  tamano: 0.35
+  colorNormal: {r: 0.2, g: 0.75, b: 1, a: 0.9}
+  colorHover: {r: 1, g: 0.85, b: 0.2, a: 1}
+  distanciaPanel: 2.2
+  autoOcultarPanel: 10
+  mostrarCoordenadas: 1
+--- !u!114 &2092320441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092320433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55430e97296f8594e81bd006a3927a4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RemoteCatalogLoader
+  catalogUrl: https://raw.githubusercontent.com/AlberthGD/Vr360Video/main/Server/catalog.json
+  timeoutSegundos: 8
+  recargarAlVolverAlMenu: 1
+  menuView: {fileID: 2092320436}
+  catalogoLocal: {fileID: 11400000, guid: 106047cfe1d284e1e92f4a0b22c68e04, type: 2}
+  statusText: {fileID: 0}
 --- !u!1 &2092486475
 GameObject:
   m_ObjectHideFlags: 0

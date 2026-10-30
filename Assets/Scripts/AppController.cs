@@ -13,6 +13,7 @@ public class AppController : MonoBehaviour
     public VideoService videoService;
     public PlaybackControls playbackControls; 
     public GameObject loadingUI; // Texto que diga "Cargando..."
+    public HotspotManager hotspotManager; // (Opcional) Puntos de interés dentro del video
 
     [Header("Efecto de Fundido")]
     public CanvasGroup fadeGroup; // Para tapar la vista
@@ -23,8 +24,13 @@ public class AppController : MonoBehaviour
     public Material menuSkybox; 
     public Material videoSkybox;
 
+    private static readonly int LayoutID = Shader.PropertyToID("_Layout");
+
     void Start()
     {
+        // Copia en tiempo de ejecución para no modificar el .mat del proyecto al cambiar el modo estéreo
+        if (videoSkybox != null) videoSkybox = new Material(videoSkybox);
+
         if (fadeGroup != null) fadeGroup.alpha = 0f; 
         CambiarEstado(AppState.Menu);
     }
@@ -44,6 +50,7 @@ public class AppController : MonoBehaviour
 
         // Cambiamos a pantalla de carga
         CambiarEstado(AppState.Loading);
+        ConfigurarEstereo(entry);
         videoService.CargarVideo(entry);
 
         // Volvemos a transparente 
@@ -66,6 +73,14 @@ public class AppController : MonoBehaviour
 
         // Volvemos a transparente 
         yield return StartCoroutine(Fade(0f));
+    }
+
+    // Soporte estéreo: el catálogo indica el formato y el shader Skybox/Panoramic
+    // entrega a cada ojo su mitad del frame (Over Under: arriba = ojo izq., abajo = ojo der.)
+    private void ConfigurarEstereo(VideoEntry entry)
+    {
+        if (videoSkybox == null) return;
+        videoSkybox.SetFloat(LayoutID, entry.StereoLayout);
     }
 
     // Pausar reanudar video en el playback
@@ -132,6 +147,7 @@ public class AppController : MonoBehaviour
                 menuView.MostrarMenu();
                 if (playbackControls != null) playbackControls.OcultarControles();
                 if (loadingUI != null) loadingUI.SetActive(false);
+                if (hotspotManager != null) hotspotManager.Limpiar();
                 
                 if (cam != null) cam.clearFlags = CameraClearFlags.SolidColor;
                 RenderSettings.skybox = null; 
@@ -141,6 +157,7 @@ public class AppController : MonoBehaviour
                 menuView.OcultarMenu();
                 if (playbackControls != null) playbackControls.OcultarControles();
                 if (loadingUI != null) loadingUI.SetActive(true);
+                if (hotspotManager != null) hotspotManager.Limpiar();
                 
                 if (cam != null) cam.clearFlags = CameraClearFlags.SolidColor;
                 RenderSettings.skybox = null; 
@@ -153,6 +170,8 @@ public class AppController : MonoBehaviour
                 
                 if (cam != null) cam.clearFlags = CameraClearFlags.Skybox;
                 RenderSettings.skybox = videoSkybox; 
+                if (hotspotManager != null && State == AppState.Playing)
+                    hotspotManager.Mostrar(videoService.VideoActual);
                 break;
         }
     }
