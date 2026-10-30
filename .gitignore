@@ -21,3 +21,13 @@
 *.pdb
 *.opendb
 *.VC.db
+
+# Build outputs & IDE
+*.apk
+*.slnx
+.plastic/
+.utmp/
+.vscode/
+*_BurstDebugInformation_DoNotShip/
+*_BackUpThisFolder_ButDontShipItWithYourGame/
+ignore.conf

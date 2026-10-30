@@ -19,6 +19,7 @@ public class VideoButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         originalScale = transform.localScale;
     }
 
+    // Configurar todo el boton del video
     public void Configurar(VideoEntry video, AppController appCtrl)
     {
         myVideo = video;
@@ -29,6 +30,7 @@ public class VideoButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         buttonComponent.onClick.AddListener(() => controller.SelectVideo(myVideo));
     }
 
+    // Para escalar el tamaño del boton al apuntarle 
     public void OnPointerEnter(PointerEventData eventData)
     {
         transform.localScale = originalScale * 1.1f; 

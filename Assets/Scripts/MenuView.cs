@@ -4,8 +4,8 @@ using UnityEngine;
 public class MenuView : MonoBehaviour
 {
     [Header("Referencias")]
-    public VideoCatalog catalog;
-    public GameObject videoButtonPrefab;
+    public VideoCatalog catalog; // Video/Catalogo
+    public GameObject videoButtonPrefab; // Prefab de los botones
     public Transform buttonContainer; // Panel donde se guardan los videoButtonPrefab
     public AppController appController;
     public Transform canvasTransform; 
@@ -18,8 +18,10 @@ public class MenuView : MonoBehaviour
         GenerarBotones();
     }
 
+    // Mostrar/Ocultar
     public void MostrarMenu()
     {
+        // Mostar contenerlo principal donde apararecen los videoButtonPrefab
         if (canvasTransform != null) canvasTransform.gameObject.SetActive(true);        
         if (buttonContainer != null) buttonContainer.gameObject.SetActive(true);
 
@@ -32,6 +34,7 @@ public class MenuView : MonoBehaviour
         if (buttonContainer != null) buttonContainer.gameObject.SetActive(false);
     }
 
+    // Generan los videoButtonPrefab dentro del buttonContainer
     private void GenerarBotones()
     {
         foreach (Transform child in buttonContainer) Destroy(child.gameObject);
@@ -50,27 +53,5 @@ public class MenuView : MonoBehaviour
     private IEnumerator ReposicionarConRetraso()
     {
         yield return new WaitForSeconds(0.1f);
-        ReposicionarFrenteAlUsuario();
-    }
-
-    private void ReposicionarFrenteAlUsuario()
-    {
-        if (Camera.main == null) return;
-
-        Transform objetivo = canvasTransform != null ? canvasTransform : transform;
-
-        Vector3 forward = Camera.main.transform.forward;
-        forward.y = 0;
-        if (forward.sqrMagnitude < 0.001f) forward = Vector3.forward;
-        forward.Normalize();
-
-        Vector3 camPos = Camera.main.transform.position;
-        
-        // toma altura de la camra o 1.4m si en el editor sigue en 0
-        float alturaMenu = camPos.y > 0.3f ? camPos.y : 1.4f;
-
-        // coloca el canvas a 2 m frente al usuario
-        objetivo.position = new Vector3(camPos.x, alturaMenu, camPos.z) + (forward * 2.0f);
-        objetivo.forward = forward;
     }
 }

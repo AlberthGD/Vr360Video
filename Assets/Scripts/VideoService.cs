@@ -25,6 +25,7 @@ public class VideoService : MonoBehaviour
         videoPlayer.loopPointReached += OnLoopPointReached;
     }
 
+    // adelantar o rebobinar video con el slider
     public void MoverTiempo(float porcentaje)
     {
         if (videoPlayer.isPrepared)
@@ -33,6 +34,7 @@ public class VideoService : MonoBehaviour
         }
     }
 
+    // Cargando .mp4
     public void CargarVideo(VideoEntry entry)
     {
         videoActual = entry;
@@ -56,6 +58,7 @@ public class VideoService : MonoBehaviour
         appController.OnVideoPrepared();
     }
 
+    // Estados del video
     public void Reproducir()
     {
         videoPlayer.Play();

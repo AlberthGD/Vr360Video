@@ -7,18 +7,20 @@ public class AppController : MonoBehaviour
 {
     public AppState State { get; private set; }
 
+    // Referencias
     [Header("UI")]
     public MenuView menuView;
     public VideoService videoService;
-    public PlaybackControls playbackControls;
-    public GameObject loadingUI;
+    public PlaybackControls playbackControls; 
+    public GameObject loadingUI; // Texto que diga "Cargando..."
 
     [Header("Efecto de Fundido")]
     public CanvasGroup fadeGroup; // Para tapar la vista
-    public float fadeDuration = 0.5f;  
+    public float fadeDuration = 0.5f;  // Duracion del fundido a negro
 
+    // Referencias para cambiar entre el video 360 y el passthrough
     [Header("Entorno")]
-    public Material menuSkybox;
+    public Material menuSkybox; 
     public Material videoSkybox;
 
     void Start()
@@ -66,6 +68,7 @@ public class AppController : MonoBehaviour
         yield return StartCoroutine(Fade(0f));
     }
 
+    // Pausar reanudar video en el playback
     public void TogglePause()
     {
         if (State == AppState.Playing)
@@ -80,6 +83,7 @@ public class AppController : MonoBehaviour
         }
     }
 
+    // Volver al menu del inicio donde aparecen los videocatalogo
     public void BackToMenu()
     {
         StartCoroutine(RutinaVolverAlMenu());
@@ -93,6 +97,7 @@ public class AppController : MonoBehaviour
         yield return StartCoroutine(Fade(0f));
     }
 
+    // Finalizo el video vuelve al inicio
     public void OnVideoFinished()
     {
         StartCoroutine(RutinaVolverAlMenu());

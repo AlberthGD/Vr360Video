@@ -7,8 +7,8 @@ public class VideoEntry
     public string title; // Nombre del video
     public string fileName; // Nombre del archivo de video StreamingAssets
     public Sprite thumbnail; // Icono
-    public string duration; 
-    public bool loop; 
+    public string duration; // Duracion xd
+    public bool loop; // Si se repite
 }
 
 [CreateAssetMenu(menuName = "Video360/Catalog")]
