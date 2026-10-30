@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: Catalogo
   m_EditorClassIdentifier: Assembly-CSharp::VideoCatalog
   videos:
-  - title: CampusU
+  - title: ' CampusU'
     fileName: CampusU.mp4
     thumbnail: {fileID: 21300000, guid: 3c6cd5b18e5cb44b9abb1b795bfd5225, type: 3}
     duration: 1:13
     loop: 0
-  - title: Landscape
+  - title: ' Landscape'
     fileName: Landscape.mp4
     thumbnail: {fileID: 21300000, guid: 69f0706d055a441a78df1d5470d8fa5e, type: 3}
     duration: 0:51
     loop: 0
-  - title: Mountain
+  - title: ' Mountain'
     fileName: Mountain.mp4
     thumbnail: {fileID: 21300000, guid: e226738984a6c46d799ac7e9bfdbe2ab, type: 3}
     duration: 0:51
