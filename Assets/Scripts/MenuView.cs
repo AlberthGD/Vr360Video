@@ -9,6 +9,7 @@ public class MenuView : MonoBehaviour
     public RemoteCatalogLoader catalogLoader; // (Opcional) Catálogo JSON descargado del servidor
     public GameObject videoButtonPrefab; // Prefab de los botones
     public Transform buttonContainer; // Panel donde se guardan los videoButtonPrefab
+    public Transform TituloSuperior;
     public AppController appController;
     public Transform canvasTransform; 
 
@@ -30,6 +31,8 @@ public class MenuView : MonoBehaviour
         // Mostar contenerlo principal donde apararecen los videoButtonPrefab
         if (canvasTransform != null) canvasTransform.gameObject.SetActive(true);        
         if (buttonContainer != null) buttonContainer.gameObject.SetActive(true);
+        if (TituloSuperior != null) TituloSuperior.gameObject.SetActive(true);
+
 
         // Al volver al menú se vuelve a leer el JSON: los videos nuevos aparecen sin recompilar
         if (menuMostradoAntes && catalogLoader != null && catalogLoader.recargarAlVolverAlMenu)
@@ -43,6 +46,7 @@ public class MenuView : MonoBehaviour
     public void OcultarMenu()
     {
         if (buttonContainer != null) buttonContainer.gameObject.SetActive(false);
+        if (TituloSuperior != null) TituloSuperior.gameObject.SetActive(false);
     }
 
     // Generan los videoButtonPrefab dentro del buttonContainer
